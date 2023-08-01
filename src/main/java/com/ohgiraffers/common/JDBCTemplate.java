@@ -2,10 +2,7 @@ package com.ohgiraffers.common;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class JDBCTemplate {
@@ -16,7 +13,7 @@ public class JDBCTemplate {
         Properties prop = new Properties();
 
         try {
-            prop.loadFromXML(new FileInputStream("src/main/java/comm/ohgiraffers/config/connection-info.properties"));
+            prop.load(new FileInputStream("src/main/java/comm/ohgiraffers/config/connection-info.properties"));
 
 
             String driver = prop.getProperty("driver");
@@ -57,6 +54,16 @@ public class JDBCTemplate {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+        public static void close(PreparedStatement pstmt) {
+            try {
+                if (pstmt != null && !pstmt.isClosed()) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }

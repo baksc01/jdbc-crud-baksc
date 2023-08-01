@@ -11,20 +11,18 @@ import java.util.Scanner;
 import static com.ohgiraffers.common.JDBCTemplate.close;
 import static com.ohgiraffers.common.JDBCTemplate.getConnection;
 
-public class MenuCreate {
+public class InsertMenu {
     public static void main (String[] args) {
 
         Connection con = getConnection();
-
         PreparedStatement pstmt = null;
+        int result = 0;
 
         Scanner sc = new Scanner(System.in);
-        System.out.println( "검색할 음식의 이름을 입력하세요.");
-        System.out.println("음식 이름 : ");
-        String name = sc.nextLine();
 
-
-
+        System.out.println("추가할 음식을 입력하세요");
+        System.out.println("음식 이름은 : ");
+        String myname = sc.nextLine();
 
         Properties prop = new Properties();
 
