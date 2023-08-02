@@ -1,4 +1,4 @@
-package com.ohgiraffers.model_dto;
+package com.ohgiraffers.model;
 
 public class MenuDTO implements java.io.Serializable {
 

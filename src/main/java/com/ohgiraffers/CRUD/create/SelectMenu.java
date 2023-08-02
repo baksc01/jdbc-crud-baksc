@@ -1,4 +1,4 @@
-package com.ohgiraffers.CRUD;
+package com.ohgiraffers.CRUD.create;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,39 +12,47 @@ import java.util.Scanner;
 import static com.ohgiraffers.common.JDBCTemplate.close;
 import static com.ohgiraffers.common.JDBCTemplate.getConnection;
 
-public class SselectMenu {
+public class SelectMenu {
     public static void main(String[] args) {
+
         Connection con = getConnection();
         PreparedStatement pstmt = null;
-        ResultSet rset = null;
+        ResultSet rs = null;
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println( "검색할 음식의 이름을 입력하세요.");
-        System.out.println( "음식 이름 : ");
-        String myName = sc.nextLine();
 
         Properties prop = new Properties();
 
         try {
             prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/menu-query.xml"));
 
+            Scanner sc = new Scanner(System.in);
+            System.out.println("검색할 음식의 이름을 입력하세요.");
+            System.out.println("음식 이름 : ");
+
+            String manuName = sc.nextLine();
+
             String query = prop.getProperty("selectMenu");
-            System.out.println();
 
             pstmt = con.prepareStatement(query);
+            pstmt.setString(1, manuName);
 
+            rs = pstmt.executeQuery();
 
+            while (rs.next()) {
+                String menuName = rs.getString("MENU_NAME");
+                int menuPrice = rs.getInt("MENU_PRICE");
+                int menuCode = rs.getInt("MENU_CODE");
 
+                System.out.println(menuName + " 의 번호는" + menuCode + "번 이고 가격은" + menuPrice + "원 입니다.");
+
+            }
 
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         } finally {
             close(con);
             close(pstmt);
-            close(rset);
+            close(rs);
         }
-
-
-
     }
 }
