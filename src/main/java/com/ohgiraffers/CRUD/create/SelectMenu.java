@@ -43,7 +43,7 @@ public class SelectMenu {
                 int menuPrice = rs.getInt("MENU_PRICE");
                 int menuCode = rs.getInt("MENU_CODE");
 
-                System.out.println(menuName + " 의 번호는" + menuCode + "번 이고 가격은" + menuPrice + "원 입니다.");
+                System.out.println(menuName + "의 번호는 " + menuCode + "번 이고 가격은 " + menuPrice + "원 입니다.");
 
             }
 

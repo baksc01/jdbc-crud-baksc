@@ -35,7 +35,7 @@ public class InsertMenu {
         Properties prop = new Properties();
 
         try {
-            prop.loadFromXML(new FileInputStream("src/main/java/comm/ohgiraffers/mapper/nenu-query.xml/"));
+            prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/menu-query.xml/"));
 
             String query = prop.getProperty("insertMenu");
 

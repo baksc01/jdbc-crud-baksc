@@ -37,7 +37,7 @@ public class UpdateMenu {
 
 
         try {
-            prop.loadFromXML(new FileInputStream("src/main/java/comm/ohgiraffers/mapper/nenu-query.xml/"));
+            prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/menu-query.xml/"));
 
             String query = prop.getProperty("updateMenu");
             pstmt = con.prepareStatement(query);
