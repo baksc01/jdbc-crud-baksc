@@ -39,6 +39,8 @@ public class InsertMenu {
 
             String query = prop.getProperty("insertMenu");
 
+            System.out.println("query : " + query);
+
 
             pstmt = con.prepareStatement(query);
 
